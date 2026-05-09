@@ -1,0 +1,1444 @@
+NEXUS AI
+Intelligent Incubation Platform
+Product Requirements Document  &  Software Requirements Specification
+Version 1.0  |  May 2026  
+Prepared By
+Nexus AI Product & Engineering Team
+Document Status
+Draft v1.0 — Pending Stakeholder Review
+PART I
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+1. Executive Summary
+Nexus AI is an AI-powered startup incubation platform designed to democratize access to world-class startup support — the kind typically reserved for founders accepted into elite accelerators like Y Combinator, Techstars, or 500 Startups. By embedding artificial intelligence throughout the entire incubation lifecycle, Nexus AI removes the gatekeeping, geographic bias, and mentor scarcity that have historically limited who gets to build transformative companies.
+The platform orchestrates five intelligent subsystems — an AI Idea Evaluation Engine, an AI Mentor Chatbot, Smart Matchmaking, a Progress Dashboard, and an Investor Portal — into a unified experience. Founders receive instant, data-driven feedback on their ideas; personalized mentorship available 24/7; curated connections to domain experts and co-founders; structured guidance on milestones; and direct visibility to a curated network of investors.
+Nexus AI targets three primary cohorts: early-stage founders (pre-seed to seed), experienced domain experts willing to mentor, and active angel investors and venture funds seeking deal flow. The platform will initially launch with a cohort-based SaaS model complemented by success-fee arrangements, scaling toward an ecosystem marketplace as the network matures.
+🎯 Problem
+Access to quality startup support is limited, biased, and expensive
+💡 Solution
+AI-native platform delivering YC-quality incubation at global scale
+📈 Market
+$300B+ global startup ecosystem; 100M+ aspiring entrepreneurs
+🚀 Model
+SaaS + Success Fees + Marketplace + Enterprise Licensing
+2. Product Vision & Goals
+2.1 Vision Statement
+To become the world's most accessible and intelligent startup incubation platform — where any founder, anywhere in the world, receives the mentorship, resources, and investor exposure needed to build a scalable company.
+2.2 Strategic Goals
+#
+Goal
+Description
+Time Horizon
+G-1
+Democratize Access
+Enable any founder globally to access world-class incubation regardless of geography, network, or background
+Year 1
+G-2
+AI-First Mentorship
+Replace passive content libraries with a proactive, context-aware AI mentor that learns from each interaction
+Year 1
+G-3
+Smart Capital Connection
+Algorithmically match investor interests and thesis alignment to the right startups at the right stage
+Year 1-2
+G-4
+Network Effects
+Build a self-reinforcing ecosystem where mentors, founders, and investors create value for each other
+Year 2
+G-5
+Data Intelligence
+Generate proprietary insights on startup success patterns to continuously improve AI recommendations
+Year 2-3
+G-6
+Global Scale
+Support 10,000+ active founders across 50+ countries by Year 3
+Year 3
+2.3 Guiding Principles
+AI Augments, Not Replaces: AI handles scale and pattern recognition; humans provide judgment and empathy
+Radical Transparency: Every AI recommendation includes its reasoning and confidence level
+Equity by Design: Diverse cohorts are an explicit product goal, not an afterthought
+Privacy-First: Founder data is never shared without explicit consent
+Continuous Learning: Every interaction improves the platform's intelligence
+3. Target Users & Personas
+3.1 Persona 1 — The Emerging Founder
+Attribute
+Detail
+Name
+Amara Osei
+Age / Location
+28 / Accra, Ghana (also applicable: Lagos, Nairobi, Bangalore, Bogotá)
+Background
+Computer Science graduate, 2 years at a fintech startup, first-time founder
+Idea Stage
+Pre-validation — has a concept for an agricultural supply chain transparency platform
+Pain Points
+No access to experienced mentors locally; does not know which investors to target; unsure if her idea is market-viable; limited budget for paid consultants
+Goals
+Validate her idea quickly, find a technical co-founder, raise a $250K pre-seed round
+Platform Need
+AI idea feedback, mentor matching, investor introductions, structured milestone tracking
+Tech Comfort
+High — comfortable with SaaS tools, uses Notion, Slack, Figma
+3.2 Persona 2 — The Expert Mentor
+Attribute
+Detail
+Name
+Dr. Kwame Mensah
+Age / Location
+47 / London, UK (formerly Accra)
+Background
+Serial entrepreneur — exited two SaaS companies; now angel investor and advisor
+Motivation
+Give back to African tech ecosystem; expand deal flow for his angel portfolio
+Pain Points
+Inundated with unqualified cold outreach; no efficient way to manage mentoring sessions; hard to track mentee progress across multiple startups
+Goals
+Mentor 5-8 high-potential startups per cohort; discover investable deals early
+Platform Need
+AI-filtered mentee matching, session scheduling, progress dashboard, deal tagging
+Time Availability
+4-6 hours per week
+3.3 Persona 3 — The Active Investor
+Attribute
+Detail
+Name
+Priya Nair
+Age / Location
+39 / Nairobi, Kenya
+Background
+Managing Partner at a $50M Africa-focused early-stage fund
+Thesis
+AgriTech, FinTech, HealthTech; pre-seed to Series A; $250K–$2M tickets
+Pain Points
+Deal flow is noisy and unqualified; due diligence is slow; hard to track portfolio company progress post-investment
+Goals
+Discover 12+ investable companies per quarter with thesis alignment scores; streamline DD with structured data
+Platform Need
+AI-curated deal flow, startup profiles, milestone history, direct founder messaging
+Platform Behavior
+Weekly active — reviews AI-recommended deals on Monday mornings
+3.4 Persona 4 — The Platform Administrator
+Attribute
+Detail
+Name
+Internal Nexus AI Team
+Responsibilities
+Cohort management, mentor vetting, investor onboarding, content curation, platform analytics
+Pain Points
+Manual cohort management is time-consuming; no unified view of ecosystem health
+Goals
+Reduce operational overhead by 70% through AI automation; maintain quality of cohorts
+Platform Need
+Admin dashboard, AI audit logs, bulk cohort tools, reporting suite
+4. User Stories / Jobs to Be Done
+4.1 Founder Stories
+ID
+As a founder, I want to...
+So that...
+US-F01
+Submit my startup idea and receive an AI-generated evaluation within minutes
+I can quickly determine if my concept has market potential before spending months building
+US-F02
+View a detailed breakdown of my idea's strengths, weaknesses, and competitive landscape
+I can make informed decisions on pivoting or doubling down
+US-F03
+Be matched with a mentor whose expertise aligns with my specific challenges
+I receive relevant guidance, not generic advice
+US-F04
+Chat with an AI mentor 24/7 about any aspect of my startup journey
+I am not blocked by timezone differences or mentor availability
+US-F05
+Track my progress against weekly milestones on a visual dashboard
+I maintain accountability and identify bottlenecks early
+US-F06
+Create a compelling investor-ready profile that auto-populates from my activity data
+I save time on pitch deck preparation
+US-F07
+See which investors have viewed my profile and their investment thesis alignment score
+I prioritize outreach to the most promising investors
+US-F08
+Find and connect with potential co-founders using AI matching
+I fill critical skill gaps in my founding team
+US-F09
+Access a curated library of resources (legal templates, pitch decks, financial models)
+I avoid reinventing the wheel on common startup challenges
+US-F10
+Receive AI-generated weekly insights on my startup's trajectory vs. cohort benchmarks
+I understand how I am performing relative to peers
+4.2 Mentor Stories
+ID
+As a mentor, I want to...
+So that...
+US-M01
+Receive AI-pre-screened mentee requests aligned with my declared expertise
+I spend time only with startups I can genuinely help
+US-M02
+Schedule and manage mentoring sessions in a unified calendar
+I avoid scheduling friction and double-bookings
+US-M03
+View a startup's full journey history before each session
+I arrive prepared and provide continuity across sessions
+US-M04
+Tag startups I find investable and export their profiles to my deal tracker
+I seamlessly integrate mentoring with my investment workflow
+US-M05
+Set my availability, pricing, and expertise tags once and let the AI handle matching
+I minimize administrative overhead
+US-M06
+Receive session summary notes auto-generated by AI after each meeting
+I maintain records without manual note-taking
+4.3 Investor Stories
+ID
+As an investor, I want to...
+So that...
+US-I01
+Define my investment thesis and have the AI surface matching startups automatically
+I have a consistent, high-quality deal flow without manual searching
+US-I02
+View a startup's milestone completion rate, AI evaluation scores, and mentor feedback
+I assess traction and team quality efficiently
+US-I03
+Request a direct introduction to a founder through the platform
+I initiate conversations without cold outreach awkwardness
+US-I04
+Create a watchlist of startups I am monitoring across cohorts
+I track companies over time and catch the right moment to invest
+US-I05
+Export due diligence data packages for promising startups
+I accelerate my internal DD process
+US-I06
+Receive a weekly AI digest of the most investable startups per my thesis
+I stay updated without daily platform visits
+5. Feature Prioritization — MoSCoW Framework
+Features are prioritized for the initial MVP (Cohort 1 launch) and subsequent phases using the MoSCoW method: Must Have (launch blocker), Should Have (high value, launch target), Could Have (nice to have), and Won't Have (explicitly out of scope for v1).
+ID
+Feature
+MoSCoW
+Phase
+Notes
+F-01
+User Registration & Role-Based Auth
+Must
+1
+SSO, email/password, role assignment at signup
+F-02
+AI Idea Evaluation Engine
+Must
+1
+Core differentiator — market sizing, viability scoring, competitor analysis
+F-03
+AI Mentor Chatbot (General)
+Must
+1
+24/7 GPT-4 powered chatbot with startup knowledge base
+F-04
+Founder Progress Dashboard
+Must
+1
+Milestone tracking, weekly check-ins, cohort timeline
+F-05
+Mentor Profile & Booking
+Must
+1
+Expert profiles, availability calendar, session booking
+F-06
+Basic Investor Portal
+Must
+1
+Startup discovery, thesis filters, watchlist
+F-07
+Smart Mentor Matchmaking
+Should
+1
+AI-powered compatibility scoring for mentor-founder pairing
+F-08
+Co-Founder Matching
+Should
+1
+Skills gap analysis + personality fit scoring
+F-09
+Resource Library
+Should
+1
+Curated templates, guides, legal docs — AI-tagged
+F-10
+AI Session Notes
+Should
+2
+Auto-generated summaries from meeting transcripts
+F-11
+Investor-Founder Intro Flow
+Should
+2
+Warm intro requests, acceptance workflow, NDA management
+F-12
+Cohort Analytics (Admin)
+Should
+1
+Aggregate health metrics, drop-out prediction, performance rankings
+F-13
+AI Weekly Digest Emails
+Could
+2
+Personalized newsletter per user role with AI-curated insights
+F-14
+Video Conferencing Integration
+Could
+2
+Native Zoom/Google Meet links in session bookings
+F-15
+Mobile App (iOS + Android)
+Could
+2
+Native mobile for founders — push notifications for milestones
+F-16
+AI Pitch Deck Generator
+Could
+2
+Auto-generate investor deck from founder data
+F-17
+Marketplace Payments (Mentor Fees)
+Could
+2
+Stripe integration for paid mentor sessions
+F-18
+Blockchain Equity Ledger
+Won't
+3
+Out of scope for v1; evaluate post product-market fit
+F-19
+Accelerator Partnership API
+Won't
+3
+Third-party accelerator data integration — future partnership track
+6. Success Metrics & KPIs
+6.1 Product Health Metrics
+Metric
+Baseline (Month 0)
+Target (Month 6)
+Target (Month 12)
+Monthly Active Founders
+0
+500
+2,500
+Idea Evaluations Submitted
+0
+1,200
+8,000
+AI Chatbot Sessions / Week
+0
+2,000
+15,000
+Mentor Sessions Booked
+0
+300
+2,000
+Founder NPS Score
+—
+>50
+>65
+Mentor Retention Rate
+—
+70%
+80%
+Investor Watchlist Additions / Week
+0
+150
+800
+Startup-to-Investor Intro Rate
+0%
+15%
+30%
+Cohort Completion Rate
+—
+60%
+75%
+AI Recommendation Accuracy (User Rating)
+—
+3.8/5
+4.3/5
+6.2 Business Metrics
+Metric
+Year 1 Target
+Year 3 Target
+Annual Recurring Revenue (ARR)
+$500K
+$5M
+Total Founders Onboarded
+1,000
+25,000
+Startups Funded via Platform
+25
+500
+Total Capital Facilitated
+$3M
+$100M
+Revenue from Mentor Marketplace
+$50K
+$1.5M
+Customer Acquisition Cost (CAC)
+$80
+$40
+Lifetime Value (LTV) — Founder
+$360
+$720
+LTV / CAC Ratio
+4.5x
+18x
+7. Go-to-Market Considerations
+7.1 Launch Strategy — Phased Rollout
+Phase
+Timeline
+Focus
+Success Gate
+Alpha
+Month 1-2
+Closed beta with 50 hand-picked founders from East/West Africa tech communities. White-glove onboarding. Intense feedback loops.
+NPS > 40; AI accuracy rating > 3.5/5
+Beta
+Month 3-4
+Open beta, 500 founders, first paying cohort ($99/mo). Onboard 20 mentors. Activate investor portal.
+500 MAU; 3 investor-startup connections
+Launch
+Month 5-6
+Public launch. PR push. Partnership with 2-3 regional accelerators. Launch referral program.
+1,000 founders; $50K MRR
+Scale
+Month 7-12
+Expand geographically (South Asia, LATAM). Launch mentor marketplace. Series A fundraise.
+2,500 MAU; $500K ARR
+7.2 Pricing Model
+Tier
+Price
+Target
+Includes
+Explorer (Free)
+$0/mo
+Idea explorers
+1 AI idea evaluation, limited chatbot (20 msgs/day), community access
+Builder
+$49/mo
+Active founders
+Unlimited AI evaluations, unlimited chatbot, mentor matching (3 sessions/mo), dashboard
+Accelerate
+$149/mo
+Funded founders
+Everything + priority mentor matching, investor portal access, AI pitch deck generator
+Cohort (Institutional)
+$2,500/cohort
+Incubators/universities
+Up to 30 founders, admin dashboard, cohort analytics, white-label option
+Mentor (Revenue Share)
+20% platform fee
+Experts
+Profile listing, AI-matched introductions, session management, payment processing
+Investor (Premium)
+$500/mo
+Funds & angels
+Unlimited deal flow, thesis matching, DD data exports, direct founder messaging
+7.3 Channels & Partnerships
+Community-Led Growth: African, South Asian, and LATAM startup communities (Twitter/X, WhatsApp groups, LinkedIn)
+University Partnerships: Embed Nexus AI in entrepreneurship programs at 10+ universities in Year 1
+Accelerator Referrals: White-label deployments for existing accelerators lacking digital infrastructure
+Influencer Mentors: Onboard 5-10 high-profile entrepreneurs as flagship mentors for brand credibility
+Content Marketing: Weekly 'Build in Public' case studies from active cohort founders
+Google / Meta Ads: Retargeting founders who engage with entrepreneurship content
+8. Product Roadmap
+Quarter
+Milestone Deliverables
+AI Capabilities
+Q3 2026
+(Alpha)
+• Auth & role management
+• AI Idea Evaluation Engine v1
+• Basic chatbot
+• Founder dashboard skeleton
+• Admin CMS
+• GPT-4o integration for idea scoring
+• Market sizing API (TAM/SAM/SOM)
+• Competitor intelligence scraper
+• Sentiment scoring baseline
+Q4 2026
+(Beta)
+• Mentor profiles + booking
+• Smart matchmaking engine
+• Resource library
+• Investor portal v1
+• Stripe payments
+• ML-based mentor-founder compatibility
+• NLP idea categorization
+• Co-founder personality profiling
+• Real-time chatbot fine-tuning pipeline
+Q1 2027
+(Launch)
+• Mobile app (iOS + Android)
+• AI session notes
+• Pitch deck generator
+• Cohort analytics dashboard
+• Referral program
+• RAG-based knowledge chatbot
+• Predictive cohort dropout model
+• Investor thesis matching ML model
+• AI-generated progress reports
+Q2-Q4 2027
+(Scale)
+• Multi-language support (5 languages)
+• White-label platform
+• API for partner integrations
+• Community forums
+• Video conferencing native
+• Proprietary startup success prediction model
+• AI board simulation (advisory mode)
+• Automated due diligence scoring
+• Generative demo day presentations
+PART II
+SOFTWARE REQUIREMENTS SPECIFICATION (SRS)
+9. System Overview
+9.1 Purpose
+This Software Requirements Specification (SRS) describes the complete functional and non-functional requirements for Nexus AI — the Intelligent Incubation Platform. It serves as the primary technical reference for engineering teams, QA, DevOps, and third-party integrators.
+9.2 Scope
+Nexus AI is a multi-tenant, cloud-native web application (with companion mobile apps) comprising seven primary modules: Authentication & User Management, AI Idea Evaluation Engine, AI Mentor Chatbot, Smart Matchmaking, Progress Dashboard, Mentor Marketplace, and Investor Portal. A unified Admin Portal governs all modules.
+9.3 System Context
+Component
+Technology Stack
+Rationale
+Frontend (Web)
+Next.js 1
+6
+, TypeScript, TailwindCSS, ShadCN UI
+SSR/SSG performance, strong ecosystem, type safety
+Mobile
+React Native + Expo
+Code sharing with web, rapid cross-platform deployment
+Backend API
+Node.js + NestJS (TypeScript), REST + GraphQL
+Modular architecture, strong DI, gRPC-ready
+AI Engine
+Python FastAPI microservices + LangChain + OpenAI GPT-4o
+Best AI tooling, Python ML ecosystem, async performance
+Database (Primary)
+PostgreSQL 16 (Neon / AWS RDS)
+ACID compliance, JSON support, mature ecosystem
+Database (Vector)
+Pinecone / pgvector
+Semantic search for mentor matching and knowledge retrieval
+Cache / Session
+Redis 7 (Upstash)
+Sub-millisecond session management, pub/sub, rate limiting
+Object Storage
+AWS S3 + CloudFront CDN
+Scalable document/media storage, global edge delivery
+Queue / Events
+AWS SQS + EventBridge
+Async AI job processing, decoupled event architecture
+Authentication
+Auth0 / Clerk
+Managed auth, MFA, SSO, social login out-of-the-box
+Payments
+Stripe
+Global payments, subscription management, marketplace payouts
+Email
+SendGrid + Resend
+Transactional + marketing email at scale
+Monitoring
+Datadog + Sentry
+APM, error tracking, AI latency monitoring
+CI/CD
+GitHub Actions + ArgoCD
+GitOps deployment to Kubernetes (EKS)
+10. Functional Requirements
+10.1 Module 1 — Authentication & User Management
+10.1.1 User Registration
+Req ID
+Requirement
+AUTH-01
+The system shall support email/password registration with email verification OTP sent within 60 seconds
+AUTH-02
+The system shall support SSO via Google OAuth 2.0 and LinkedIn OAuth 2.0
+AUTH-03
+Users shall select a primary role at registration: Founder, Mentor, Investor, or Administrator
+AUTH-04
+The system shall validate email uniqueness globally across all roles
+AUTH-05
+Password policy: minimum 8 characters, at least one uppercase, one digit, one special character
+AUTH-06
+The system shall support multi-tenancy — a user may belong to one organization (incubator) context
+AUTH-07
+Admin users shall be created only via the internal admin CLI or existing admin invitation flow
+10.1.2 Authentication
+Req ID
+Requirement
+AUTH-08
+JWT access tokens expire in 15 minutes; refresh tokens expire in 7 days and rotate on each use
+AUTH-09
+The system shall enforce TOTP-based MFA (optional for founders, mandatory for admins and investors)
+AUTH-10
+Brute force protection: lock account for 15 minutes after 5 consecutive failed login attempts
+AUTH-11
+All sessions shall be invalidated on password change or explicit logout
+AUTH-12
+The system shall maintain a session activity log (IP, device, timestamp) accessible by the user
+AUTH-13
+Password reset flow shall use a signed, time-limited token (valid 1 hour) sent via email
+10.1.3 Role-Based Access Control (RBAC)
+Role
+Default Permissions
+ROLE_FOUNDER
+Submit ideas, access chatbot, view own dashboard, book mentor sessions, view investor portal (read-only), manage own profile
+ROLE_MENTOR
+Manage mentor profile, view/accept mentee requests, access session scheduler, view mentee startup summaries, earn revenue
+ROLE_INVESTOR
+Browse startup discovery feed, manage watchlist, request introductions, export DD packets, set investment thesis
+ROLE_ADMIN
+Full CRUD on all entities, cohort management, user impersonation (audit-logged), analytics export, AI configuration
+ROLE_SUPER_ADMIN
+All ADMIN permissions + billing management, tenant provisioning, AI model configuration, audit log access
+10.2 Module 2 — AI Idea Evaluation Engine
+The AI Idea Evaluation Engine is the core differentiator of Nexus AI. It provides founders with a structured, data-driven assessment of their startup idea across multiple dimensions within minutes of submission.
+10.2.1 Idea Submission
+Req ID
+Requirement
+IDEA-01
+The founder shall submit an idea via a structured form: Problem Statement, Proposed Solution, Target Market, Revenue Model, Stage (Idea/MVP/Revenue), Team Size, and Geographic Focus
+IDEA-02
+The system shall accept optional attachments: one-pager PDF, pitch deck (max 25MB), prototype URL
+IDEA-03
+The AI engine shall return a full evaluation report within 90 seconds for text-only submissions
+IDEA-04
+The system shall support up to 3 idea submissions per founder per month on the Builder tier
+IDEA-05
+All idea data shall be stored in encrypted form; founders may delete their submissions at any time
+IDEA-06
+The system shall provide a real-time progress indicator during AI processing
+10.2.2 Evaluation Dimensions
+Dimension
+Weight
+AI Assessment Method
+Market Opportunity (TAM/SAM/SOM)
+25%
+Market sizing via web search + industry reports; structured LLM extraction
+Problem Severity & Frequency
+20%
+NLP analysis of problem statement against known pain point taxonomies
+Solution Uniqueness
+15%
+Competitor analysis via web scraping + patent database search
+Business Model Viability
+15%
+Revenue model classification + margin benchmarking against sector data
+Team-Market Fit
+10%
+Founder background parsing vs. domain requirement analysis
+Execution Readiness
+10%
+Stage assessment + milestone clarity scoring
+Macro / Regulatory Risk
+5%
+Geographic + sector risk lookup from regulatory database
+10.2.3 Evaluation Output
+Req ID
+Requirement
+IDEA-07
+The system shall generate a composite Nexus Score (0-100) with per-dimension sub-scores
+IDEA-08
+The report shall include: 3 key strengths, 3 critical risks, 5 recommended next actions, and 3 relevant competitor profiles
+IDEA-09
+The system shall identify the 3 most relevant mentor expertise categories for the idea
+IDEA-10
+The evaluation shall include a TAM chart (visual), a competitor quadrant chart, and a risk heatmap
+IDEA-11
+Founders shall be able to re-submit an improved idea version and compare scores across versions
+IDEA-12
+All evaluation outputs shall clearly label AI-generated content and include a confidence indicator
+IDEA-13
+Admins shall be able to override AI scores and add manual annotations with audit trail
+10.3 Module 3 — AI Mentor Chatbot
+10.3.1 Chatbot Core
+Req ID
+Requirement
+CHAT-01
+The chatbot shall use GPT-4o as the primary LLM with a RAG pipeline over the Nexus AI knowledge base
+CHAT-02
+The knowledge base shall include: startup frameworks (Lean Startup, Jobs to Be Done, etc.), legal templates, fundraising guides, 500+ curated startup case studies
+CHAT-03
+The chatbot shall maintain full conversation history within a session and summarized context across sessions (last 30 days)
+CHAT-04
+The chatbot shall be role-aware: responses are tailored to whether the user is a Founder, Mentor, or Investor
+CHAT-05
+The chatbot shall proactively suggest next questions based on conversation context ('You might also want to ask...')
+CHAT-06
+Average chatbot response time shall be under 3 seconds for responses under 500 tokens
+CHAT-07
+The chatbot shall support file uploads (PDF, DOCX) for document analysis within the conversation
+CHAT-08
+The system shall implement a content safety filter — block harmful, illegal, or off-topic requests with a graceful redirect
+CHAT-09
+Chatbot conversations shall never be used to train external models without explicit user consent
+CHAT-10
+The system shall allow founders to 'pin' key chatbot insights to their dashboard
+10.4 Module 4 — Smart Matchmaking
+10.4.1 Mentor-Founder Matching
+Req ID
+Requirement
+MATCH-01
+The matching engine shall compute a compatibility score (0-1.0) for each mentor-founder pair using a multi-factor ML model
+MATCH-02
+Matching factors shall include: domain expertise alignment, stage experience, geography (if preferred), language, availability, past success rate with similar ideas
+MATCH-03
+The system shall present founders with the top 5 mentor matches ranked by compatibility score with explanation
+MATCH-04
+Founders shall be able to accept or decline a mentor match; declinations feed back into the model as negative signal
+MATCH-05
+The system shall re-compute matches weekly or after significant profile updates
+MATCH-06
+Mentors shall be able to set intake preferences (idea stage, sector focus, maximum active mentees)
+MATCH-07
+The system shall prevent mentor overload by capping active mentee assignments per mentor (configurable, default: 8)
+10.4.2 Co-Founder Matching
+Req ID
+Requirement
+MATCH-08
+Founders seeking co-founders shall complete a skills inventory and working-style questionnaire
+MATCH-09
+The system shall identify skill gaps in the founder's current team and target complementary profiles
+MATCH-10
+Co-founder matching shall weight personality/working-style compatibility at 40% and skill complementarity at 60%
+MATCH-11
+Matched co-founder candidates shall be surfaced with mutual opt-in — both parties must express interest before contact details are shared
+MATCH-12
+The system shall track co-founder team formations and use outcomes to improve the matching model
+10.5 Module 5 — Progress Dashboard
+Req ID
+Requirement
+DASH-01
+The dashboard shall display the founder's current cohort phase, milestone completion rate, and cohort rank
+DASH-02
+Each cohort phase shall have 4-6 predefined milestones with completion criteria; founders mark completion with supporting evidence
+DASH-03
+The system shall send automated reminders (email + in-app) for overdue milestones at 3-day and 7-day intervals
+DASH-04
+The AI shall generate a weekly progress narrative ('You completed 3/5 milestones this week. Your biggest blocker appears to be X based on your check-in notes.')
+DASH-05
+The dashboard shall display a burndown chart of milestones over the cohort timeline
+DASH-06
+Mentors shall have a read-only view of their mentees' dashboards to prepare for sessions
+DASH-07
+Admins shall have a cohort-level view showing aggregate milestone completion, dropout risk flags, and performance distribution
+DASH-08
+The system shall flag founders with >2 consecutive missed weekly check-ins and alert their assigned mentor
+DASH-09
+Founders shall be able to add custom milestones beyond the default cohort curriculum
+DASH-10
+The system shall display a 'Cohort Benchmark' widget showing the founder's position relative to peers (anonymized)
+10.6 Module 6 — Mentor Marketplace
+Req ID
+Requirement
+MENT-01
+Mentors shall create profiles with: bio, expertise tags (max 15), portfolio companies, availability slots, session price (free or paid), and languages spoken
+MENT-02
+Mentor profiles shall be publicly discoverable by founders via keyword and expertise search
+MENT-03
+The system shall display verified badges for mentors with confirmed portfolio exits or credentials
+MENT-04
+Session booking shall integrate with Google Calendar and Outlook Calendar via OAuth
+MENT-05
+The system shall send session reminders 24 hours and 1 hour before scheduled sessions
+MENT-06
+Post-session, the AI shall generate a session summary from the audio transcript (with consent) and action items
+MENT-07
+Founders shall rate mentors (1-5 stars + written review) after each session; reviews are public
+MENT-08
+Mentor payments (for paid sessions) shall be processed via Stripe Connect with a 7-day payout delay
+MENT-09
+The platform shall take a 20% commission on all paid mentor sessions
+MENT-10
+Mentors shall receive a monthly statement of sessions, earnings, and ratings summary
+MENT-11
+The system shall enforce a 24-hour cancellation policy — late cancellations by founders incur a 50% charge
+10.7 Module 7 — Investor Portal
+Req ID
+Requirement
+INV-01
+Investors shall define an investment thesis profile: sectors, geographies, stages, ticket size range, and preferred business models
+INV-02
+The AI shall score each startup against each investor's thesis (0-100) and surface the top 20 matches per week
+INV-03
+Startup profiles visible to investors shall include: Nexus Score, idea summary, team overview, milestone completion rate, mentor ratings, and AI-generated investment thesis alignment explanation
+INV-04
+Investors shall request introductions via the platform — the founder receives a notification and may accept or decline
+INV-05
+Accepted introductions shall unlock encrypted messaging between investor and founder within the platform
+INV-06
+Investors shall create private watchlists and annotate startups with private notes
+INV-07
+The system shall generate a DD data pack for each startup: standardized one-pager, financial projections (if uploaded), team CVs, and milestone history
+INV-08
+Investor profiles and investment history on the platform shall be verified by the Nexus AI admin team before portal access is granted
+INV-09
+Investors shall receive a weekly AI digest email of top thesis-matched startups with their compatibility scores
+INV-10
+The platform shall track investment outcomes (when disclosed) and feed this data back into the AI recommendation models
+11. Non-Functional Requirements
+11.1 Performance
+ID
+Requirement
+Target SLA
+NFR-P01
+API response time for non-AI endpoints
+P95 < 200ms; P99 < 500ms
+NFR-P02
+AI idea evaluation turnaround time
+< 90 seconds end-to-end
+NFR-P03
+Chatbot response streaming (first token)
+< 800ms
+NFR-P04
+Matchmaking score computation
+< 10 seconds for full recompute
+NFR-P05
+Dashboard page load (web, cold)
+< 2 seconds (LCP)
+NFR-P06
+Platform uptime SLA
+99.9% monthly (< 43 min downtime/month)
+NFR-P07
+Concurrent active users (initial)
+Sustained 5,000; burst 15,000
+NFR-P08
+Database query latency
+P95 < 50ms for indexed queries
+11.2 Scalability
+ID
+Requirement
+NFR-S01
+All backend services shall be stateless and horizontally scalable via Kubernetes HPA (Horizontal Pod Autoscaler)
+NFR-S02
+The AI microservices shall scale independently from core web services
+NFR-S03
+Database connections shall be pooled via PgBouncer; max pool size configurable per service
+NFR-S04
+The system shall support multi-region deployment (primary: AWS eu-west-1; secondary: AWS af-south-1) for latency optimization
+NFR-S05
+Data partitioning strategy: cohort data partitioned by cohort_id; investor data partitioned by join_date ranges
+11.3 Security
+ID
+Requirement
+NFR-SEC01
+All data in transit shall be encrypted via TLS 1.3+; all data at rest encrypted via AES-256
+NFR-SEC02
+Sensitive fields (SSN, banking info) shall use application-level field encryption (AES-256-GCM) before storage
+NFR-SEC03
+The platform shall pass OWASP Top 10 penetration testing annually; critical vulnerabilities patched within 72 hours
+NFR-SEC04
+All API endpoints shall implement rate limiting: 100 req/min for authenticated users; 10 req/min for unauthenticated
+NFR-SEC05
+GDPR Article 17 compliance: data deletion requests fulfilled within 30 days; automated right-to-erasure pipeline
+NFR-SEC06
+Secrets management via AWS Secrets Manager; no credentials in code or environment files in repository
+NFR-SEC07
+AI prompts shall include injection prevention: system prompt isolation, output sanitization, and user input escaping
+NFR-SEC08
+All admin actions shall be logged in an immutable audit trail (tamper-evident, 7-year retention)
+NFR-SEC09
+RBAC permissions shall be validated server-side on every request; client-side authorization is supplemental only
+NFR-SEC10
+The platform shall implement a vulnerability disclosure program (VDP) before public launch
+11.4 Reliability & Recovery
+ID
+Requirement
+Target
+NFR-R01
+Recovery Time Objective (RTO)
+< 1 hour for full regional failover
+NFR-R02
+Recovery Point Objective (RPO)
+< 5 minutes (continuous WAL archiving to S3)
+NFR-R03
+Database automated daily backups retained for 30 days
+Verified monthly with restore test
+NFR-R04
+Graceful degradation: if AI services are unavailable, the platform serves cached/baseline responses and clearly indicates AI service unavailability
+AI downtime must not cause full platform outage
+NFR-R05
+Circuit breaker pattern on all external API calls (OpenAI, Stripe, etc.) with fallback behavior
+Max 3 retries with exponential backoff
+12. System Architecture
+12.1 High-Level Architecture
+Nexus AI follows a microservices architecture organized into four layers: Client Layer, API Gateway Layer, Service Layer, and Data Layer. Services communicate via REST/GraphQL for synchronous operations and AWS SQS/EventBridge for asynchronous operations (AI jobs, email, notifications).
+Layer
+Components
+Client Layer
+Next.js Web App (SSR) | React Native Mobile App | Admin SPA
+API Gateway
+AWS API Gateway + Kong Gateway | Rate Limiting | Auth Middleware | Request Logging
+Core Services
+Auth Service | User Service | Cohort Service | Notification Service | Payment Service | File Service
+AI Services
+Idea Evaluation Service (Python/FastAPI) | Chatbot Service (Python/LangChain) | Matchmaking Service (Python/scikit-learn) | Analytics AI Service
+Data Layer
+PostgreSQL (primary OLTP) | Redis (cache/sessions) | Pinecone (vector DB) | S3 (files) | Redshift (analytics)
+Infrastructure
+AWS EKS (Kubernetes) | Terraform IaC | GitHub Actions CI/CD | Datadog Monitoring | CloudFront CDN
+12.2 AI Architecture
+AI Component
+Architecture Detail
+Idea Evaluation Pipeline
+1. Intake & preprocessing → 2. Market research (Tavily/Serper web search) → 3. Parallel LLM calls (GPT-4o) per dimension → 4. Score aggregation → 5. Report generation → 6. Chart rendering → 7. Cache to Redis
+RAG Chatbot
+LangChain ConversationalRetrievalChain | Pinecone vector store (1536-dim embeddings, text-embedding-3-small) | Conversation buffer memory (summarized) | GPT-4o as generator
+Matchmaking Engine
+Feature extraction from profiles → embedding similarity (cosine) + rule-based filters → XGBoost compatibility score → weekly batch recompute + real-time incremental updates
+Session Notes AI
+Whisper API transcription → GPT-4o summarization with custom prompt → structured output (JSON) → CRUD to session record
+Investor Matching
+Thesis vector embedding → startup embedding → cosine similarity ranking → re-ranked by traction signals (milestone rate, mentor ratings)
+Dropout Prediction
+Time-series features (login frequency, milestone completion, chatbot usage) → LightGBM classifier → alerts at threshold > 0.7
+13. Data Models & Database Schema
+13.1 Core Entities
+The following tables define the primary database schema. All tables include created_at, updated_at (TIMESTAMPTZ), and deleted_at (soft delete via TIMESTAMPTZ, nullable) unless otherwise noted.
+13.1.1 users
+Column
+Type
+Constraints
+Description
+id
+UUID
+PK, DEFAULT gen_random_uuid()
+Primary identifier
+email
+VARCHAR(320)
+UNIQUE, NOT NULL, INDEX
+Validated email address
+password_hash
+VARCHAR(255)
+NULLABLE
+bcrypt hash; null if SSO-only
+role
+ENUM
+NOT NULL
+founder | mentor | investor | admin | super_admin
+first_name
+VARCHAR(100)
+NOT NULL
+last_name
+VARCHAR(100)
+NOT NULL
+avatar_url
+TEXT
+NULLABLE
+S3 URL
+phone
+VARCHAR(20)
+NULLABLE, ENCRYPTED
+E.164 format
+country_code
+CHAR(2)
+NOT NULL
+ISO 3166-1 alpha-2
+timezone
+VARCHAR(50)
+NOT NULL
+IANA timezone string
+is_verified
+BOOLEAN
+DEFAULT FALSE
+Email verification status
+mfa_enabled
+BOOLEAN
+DEFAULT FALSE
+mfa_secret
+TEXT
+NULLABLE, ENCRYPTED
+TOTP secret
+last_login_at
+TIMESTAMPTZ
+NULLABLE
+organization_id
+UUID
+FK → organizations, NULLABLE
+Multi-tenancy link
+13.1.2 startups
+Column
+Type
+Constraints
+Description
+id
+UUID
+PK
+founder_id
+UUID
+FK → users, NOT NULL, INDEX
+Primary founder
+name
+VARCHAR(200)
+NOT NULL
+tagline
+VARCHAR(500)
+NULLABLE
+One-line pitch
+problem_statement
+TEXT
+NOT NULL
+solution
+TEXT
+NOT NULL
+target_market
+TEXT
+NOT NULL
+revenue_model
+VARCHAR(100)
+NOT NULL
+SaaS | Marketplace | Freemium | etc.
+stage
+ENUM
+NOT NULL
+idea | mvp | revenue | scaling
+sector_tags
+TEXT[]
+NOT NULL
+Array of sector strings
+geo_focus
+TEXT[]
+NOT NULL
+Array of country codes
+nexus_score
+DECIMAL(5,2)
+NULLABLE
+Latest AI evaluation score
+website_url
+TEXT
+NULLABLE
+pitch_deck_url
+TEXT
+NULLABLE, ENCRYPTED
+S3 URL
+is_visible_to_investors
+BOOLEAN
+DEFAULT FALSE
+Founder opt-in
+cohort_id
+UUID
+FK → cohorts, NULLABLE
+13.1.3 Additional Key Tables (Summary)
+Table
+Key Columns
+idea_evaluations
+id, startup_id, nexus_score, market_score, solution_score, team_score, model_score, exec_score, risk_score, raw_report_json, model_version, processing_time_ms
+mentor_profiles
+id, user_id, bio, expertise_tags[], linkedin_url, session_price_usd, max_active_mentees, is_accepting, rating_avg, rating_count, verified_badges[]
+mentor_sessions
+id, mentor_id, founder_id, startup_id, scheduled_at, duration_min, status (scheduled|completed|cancelled), transcript_url, ai_summary, action_items_json, founder_rating, mentor_rating
+matches
+id, mentor_id, founder_id, compatibility_score, match_factors_json, status (pending|accepted|declined|expired), matched_at, responded_at
+cohorts
+id, organization_id, name, start_date, end_date, max_founders, curriculum_json, is_active
+milestones
+id, cohort_id, phase_number, title, description, criteria, due_offset_days, is_required
+founder_milestones
+id, founder_id, milestone_id, status (pending|in_progress|completed), completed_at, evidence_url, ai_validation_score
+investor_profiles
+id, user_id, fund_name, fund_size_usd, thesis_text, thesis_embedding (vector), sectors[], stages[], geo_focus[], min_ticket_usd, max_ticket_usd, is_verified
+investor_watchlists
+id, investor_id, startup_id, private_notes, added_at, interest_level (watching|interested|hot)
+intro_requests
+id, investor_id, startup_id, status (pending|accepted|declined), message, responded_at, thread_id
+messages
+id, thread_id, sender_id, content (ENCRYPTED), sent_at, read_at
+notifications
+id, user_id, type, title, body, is_read, action_url, created_at
+audit_logs
+id, actor_id, action, entity_type, entity_id, changes_json, ip_address, user_agent, created_at (NO soft delete)
+14. API Endpoints
+All endpoints are versioned under /api/v1/. Authentication is via Bearer token (JWT). Responses are JSON with standard envelope: { success: boolean, data: T, meta?: PaginationMeta, error?: ErrorDetail }.
+14.1 Authentication
+Method
+Path
+Endpoint
+Description
+POST
+Public
+/auth/register
+Register new user; returns tokens + user profile
+POST
+Public
+/auth/login
+Email/password login; returns access + refresh tokens
+POST
+Public
+/auth/refresh
+Rotate refresh token; returns new access token
+POST
+Auth
+/auth/logout
+Invalidate current session tokens
+POST
+Public
+/auth/oauth/:provider
+SSO initiation (google | linkedin)
+POST
+Auth
+/auth/mfa/enable
+Enable TOTP MFA; returns QR code + backup codes
+POST
+Public
+/auth/password-reset/request
+Send password reset email
+POST
+Public
+/auth/password-reset/confirm
+Confirm reset with token + new password
+14.2 Ideas & Evaluations
+Method
+Auth
+Path
+Description
+POST
+Founder
+/ideas
+Submit new idea for evaluation; enqueues AI job
+GET
+Founder
+/ideas
+List founder's submitted ideas with scores
+GET
+Founder
+/ideas/:id
+Get full idea detail + evaluation report
+GET
+Founder
+/ideas/:id/evaluation
+Get full AI evaluation report for an idea
+POST
+Founder
+/ideas/:id/revise
+Submit revised idea; creates new evaluation version
+DELETE
+Founder
+/ideas/:id
+Soft-delete idea and associated evaluations
+GET
+Admin
+/admin/ideas
+List all ideas with filters (score, stage, date)
+PATCH
+Admin
+/admin/ideas/:id/evaluation
+Admin override of AI score with annotation
+14.3 Chatbot
+Method
+Auth
+Path
+Description
+POST
+Any Auth
+/chat/sessions
+Start new chat session; returns session_id
+POST
+Any Auth
+/chat/sessions/:id/messages
+Send message; returns SSE stream (streaming response)
+GET
+Any Auth
+/chat/sessions/:id/messages
+List messages in session (paginated)
+GET
+Any Auth
+/chat/sessions
+List user's chat sessions with last message preview
+DELETE
+Any Auth
+/chat/sessions/:id
+Delete session and its messages
+POST
+Any Auth
+/chat/sessions/:id/pin
+Pin a chatbot message to dashboard
+14.4 Matchmaking, Mentors, Investors (Summary)
+Method
+Auth
+Path
+Description
+GET
+Founder
+/matches/mentors
+Get AI-ranked top 5 mentor matches
+POST
+Founder
+/matches/mentors/:id/request
+Send mentor match request
+PATCH
+Mentor
+/matches/:id/respond
+Accept or decline match request
+GET
+Founder/Mentor
+/matches/cofounders
+Get co-founder match suggestions
+GET
+Any
+/mentors
+Browse mentor directory (search, filter, paginate)
+GET
+Any
+/mentors/:id
+Get mentor public profile
+POST
+Founder
+/mentors/:id/sessions
+Book a session slot
+GET
+Auth
+/mentors/:id/sessions
+List sessions for mentor or founder
+PATCH
+Auth
+/sessions/:id
+Update session status (cancel, complete)
+POST
+Auth
+/sessions/:id/review
+Submit post-session rating and review
+GET
+Investor
+/investors/feed
+AI-curated startup discovery feed
+POST
+Investor
+/investors/watchlist
+Add startup to watchlist
+POST
+Investor
+/investors/intros
+Request introduction to founder
+PATCH
+Founder
+/investors/intros/:id/respond
+Accept or decline intro request
+GET
+Investor
+/investors/startups/:id/dd-pack
+Download DD data package
+15. AI/ML Component Specifications
+15.1 Idea Evaluation Engine — Technical Specification
+Parameter
+Specification
+Primary Model
+OpenAI GPT-4o (gpt-4o-2024-08-06) via structured outputs (JSON mode)
+Orchestration
+LangChain LCEL chains with parallel execution for independent dimension evaluations
+Market Research
+Tavily Search API + SerpAPI for real-time competitor and market data retrieval
+Embedding Model
+text-embedding-3-small (1536 dimensions) for semantic categorization
+Processing Mode
+Async job queue (SQS) — evaluation results pushed via WebSocket when complete
+Prompt Strategy
+System prompt defines scoring rubric per dimension; few-shot examples per sector; chain-of-thought reasoning required before scoring
+Output Schema
+Strict JSON schema validation via Pydantic; fallback re-request on schema violation (max 2 retries)
+Cost Optimization
+Cache identical or near-identical ideas (cosine similarity > 0.95 on embedding) for 24 hours
+Confidence Scoring
+Token probability aggregation across key scoring statements; displayed as Low/Medium/High
+Version Tracking
+Every evaluation stores model_version and prompt_version for regression analysis
+Accuracy Monitoring
+Random 5% of evaluations reviewed by human experts; feedback loop into prompt refinement
+15.2 Matchmaking ML Model Specification
+Parameter
+Specification
+Algorithm
+Ensemble: XGBoost (compatibility prediction) + cosine similarity (vector features)
+Feature Set (Mentor)
+expertise_tags_embedding, sector_history_embedding, avg_rating, active_mentee_count, stage_preference_encoded, geo_encoded, success_rate
+Feature Set (Founder)
+idea_embedding, sector_tags_encoded, stage_encoded, team_size, geo_encoded, communication_style_score
+Training Data
+Historical match acceptance/declination outcomes + post-match ratings (bootstrapped with synthetic data initially)
+Evaluation Metric
+Acceptance Rate Precision@5 (target > 60%); Post-match NPS lift vs. random matching
+Retraining Schedule
+Weekly batch retraining when > 100 new labeled examples accumulated; A/B tested before promotion
+Cold Start
+New mentors use expertise embedding similarity only until 5+ session outcomes recorded
+Explainability
+SHAP values computed per match; top 3 contributing factors displayed to users
+Infrastructure
+Model served via BentoML on dedicated GPU-optional k8s deployment; predictions cached in Redis 1 hour
+15.3 RAG Chatbot Architecture
+Component
+Detail
+Retriever
+Pinecone hybrid search (dense embedding + sparse BM25); top-k=5 most relevant chunks per query
+Generator
+GPT-4o with system prompt: role persona, knowledge base grounding, output format constraints, hallucination prevention
+Memory
+ConversationSummaryBufferMemory: last 10 messages verbatim + rolling summary of prior context
+Knowledge Base Sources
+Curated startup literature (500+ PDFs), YC application advice, term sheet templates, financial modeling guides, legal FAQs, cohort-specific content
+Chunk Strategy
+Recursive character text splitter: 1,000 tokens max, 200 token overlap; metadata: source, date, category, quality_score
+Indexing Pipeline
+Unstructured.io → text extraction → chunk → embed → upsert to Pinecone; triggered on content CMS updates
+Guardrails
+LlamaGuard content safety layer; off-topic deflection with friendly redirect; no financial or legal advice without disclaimer
+Latency Optimization
+Streaming responses (SSE); retrieval parallelized with generation; connection pooling to Pinecone
+Evaluation
+RAGAS metrics: faithfulness, answer relevancy, context recall — monitored weekly via automated test suite
+16. Security Requirements
+16.1 Application Security
+Input Validation: All user inputs validated server-side with Joi/Zod schemas; parameterized queries exclusively (no raw SQL)
+CSRF Protection: SameSite=Strict cookies + CSRF tokens for state-changing operations
+XSS Prevention: Content-Security-Policy headers; output encoding via DOMPurify on client
+SQL Injection: ORM (Prisma) with parameterized queries; periodic SQLMap testing in CI
+File Upload Security: MIME type validation + virus scanning (ClamAV) before S3 storage; filenames sanitized
+API Security: OpenAPI spec-based request validation; JSON schema strict mode enabled
+16.2 Infrastructure Security
+Network: VPC with private subnets for databases and AI services; NAT Gateway for egress; WAF (AWS WAF) for edge protection
+Secrets: AWS Secrets Manager for all credentials; rotated automatically every 90 days
+Container Security: Images scanned with Trivy in CI pipeline; non-root containers; read-only file systems
+Kubernetes: RBAC on cluster; Network Policies for pod-to-pod isolation; Pod Security Standards (restricted)
+Encryption: TLS 1.3 termination at load balancer; mTLS between internal services; AES-256 for data at rest
+16.3 AI-Specific Security
+Prompt Injection Prevention: System prompts isolated from user content via structured API messages array; user input never interpolated into system prompt
+Data Leakage Prevention: Founder idea data never included in prompt context for unrelated users' evaluations
+Model Access Control: OpenAI API keys rotated monthly; usage monitored for anomalies; spend alerts configured
+Output Sanitization: AI-generated content HTML-encoded before rendering; markdown renderer configured to prevent script injection
+Personally Identifiable Information (PII): PII scrubbed from AI training feedback pipelines before any model fine-tuning
+16.4 Compliance
+Standard / Regulation
+Compliance Approach
+GDPR (EU)
+Data processing agreements with all vendors; consent management; right to erasure automation; DPA appointed; annual audit
+CCPA (California)
+Privacy notice; opt-out of data sale (N/A — no data selling); data subject request handling workflow
+SOC 2 Type II
+Target Year 2; controls mapped to CC series; annual third-party audit planned
+NDPA (Nigeria)
+Data localization optional; NITDA registration for Nigerian entity; data breach notification within 72 hours
+PDPA (Kenya)
+Registration with Office of Data Protection Commissioner; cross-border transfer safeguards
+PCI DSS
+Not storing card data directly — Stripe handles; annual SAQ A self-assessment
+17. Integration Points
+System
+Type
+Phase
+Purpose & Notes
+OpenAI GPT-4o
+REST API
+Phase 1
+Idea evaluation, chatbot, session notes, digest generation
+Pinecone
+SDK
+Phase 1
+Vector storage for RAG and matchmaking embeddings
+Stripe / Stripe Connect
+SDK + Webhooks
+Phase 1
+Subscriptions, mentor payouts, marketplace fees
+Auth0 / Clerk
+SDK + OAuth
+Phase 1
+Authentication, MFA, SSO identity provider
+Tavily / SerpAPI
+REST API
+Phase 1
+Real-time web search for idea evaluation market data
+SendGrid
+REST API + Templates
+Phase 1
+Transactional emails (verification, session reminders, digests)
+Google Calendar API
+OAuth + REST
+Phase 1
+Mentor session booking calendar sync
+Outlook Calendar API
+OAuth + REST
+Phase 2
+Alternative calendar integration for mentors on Microsoft 365
+AWS S3 + CloudFront
+SDK
+Phase 1
+Document/media storage and CDN delivery
+Datadog
+Agent + SDK
+Phase 1
+APM, infrastructure monitoring, AI latency dashboards
+Sentry
+SDK
+Phase 1
+Client + server error tracking with source maps
+Whisper API
+REST API
+Phase 2
+Meeting transcript generation for AI session notes
+Zoom / Google Meet
+OAuth + REST
+Phase 2
+Video conferencing link generation embedded in session booking
+HubSpot
+REST API
+Phase 2
+CRM integration for investor relationship management
+Slack
+Webhooks
+Phase 2
+Admin alerts, cohort notifications channel integration
+18. Constraints & Assumptions
+18.1 Constraints
+ID
+Type
+Constraint
+CON-01
+Budget
+Initial MVP development must be completed within a $180,000 engineering budget (8-person team, 6 months)
+CON-02
+AI Cost
+OpenAI API costs capped at $15,000/month in Year 1; optimization required at scale (caching, batching, model tiering)
+CON-03
+Regulatory
+The platform is NOT a licensed financial advisor, legal advisor, or investment intermediary — all AI outputs must include appropriate disclaimers
+CON-04
+Data Residency
+Founder data from EU-based organizations must remain in AWS eu-west-1; African data preferentially in AWS af-south-1
+CON-05
+Third-Party Models
+The platform depends on OpenAI API availability; SLA must account for OpenAI's 99.9% uptime commitment with graceful degradation
+CON-06
+Mobile
+Native mobile app development begins in Phase 2 only; Phase 1 web app must be fully responsive (mobile-first CSS breakpoints)
+CON-07
+Team
+Engineering team limited to 8 FTEs for MVP; heavy use of managed services to minimize infrastructure burden
+18.2 Assumptions
+ID
+Assumption
+ASM-01
+Founders will submit their own ideas and represent their startups accurately; the platform is not responsible for verifying factual claims in submissions
+ASM-02
+Mentors vetted by Nexus AI admin team before profile activation; the vetting process is manual for Phase 1
+ASM-03
+Investors are accredited per their jurisdiction's definition; Nexus AI does not verify accreditation status and is not liable for investment outcomes
+ASM-04
+AI evaluations are advisory only and do not constitute investment, legal, or financial advice
+ASM-05
+Internet connectivity is available to founders; offline mode is not supported in v1
+ASM-06
+OpenAI GPT-4o remains available and its API pricing stays within 50% of current rates for the 12-month planning horizon
+ASM-07
+The primary target market (Africa, South Asia, LATAM) has sufficient English-language proficiency for v1; multi-language support is a Phase 2 priority
+ASM-08
+Stripe is legally operable in all target launch countries; fallback payment providers (Flutterwave, Paystack) to be evaluated for Phase 2
+19. Appendix — Document History & Approvals
+Version
+Date
+Author
+Changes
+Status
+1.0
+May 2026
+Nexus AI Product Team
+Initial draft — full PRD + SRS
+Draft — Under Review
