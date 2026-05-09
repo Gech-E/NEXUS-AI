@@ -1,0 +1,41 @@
+.cardBase {
+  border-radius: var(--radius-xl);
+  transition: all 0.2s ease;
+}
+
+.default {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  padding: 1.5rem;
+}
+
+.hoverable:hover {
+  border-color: var(--color-brand-500);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  padding: 1.5rem;
+}
+
+.gradientBorder {
+  position: relative;
+  background: var(--bg-card);
+  padding: 1.5rem;
+}
+
+.gradientBorder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-brand-500), var(--color-accent-500));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}

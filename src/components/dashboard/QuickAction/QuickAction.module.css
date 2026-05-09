@@ -1,0 +1,42 @@
+.wrapper {
+  text-decoration: none;
+  display: block;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* We use a global :hover to trigger the child icon wrapper transform, just like group-hover in tailwind */
+.card:hover .iconWrapper {
+  transform: scale(1.1);
+}
+
+.iconWrapper {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
