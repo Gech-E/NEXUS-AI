@@ -1,0 +1,706 @@
+// Prisma Schema for Nexus AI — Intelligent Incubation Platform
+// Complete database design with all entities, relationships, and indexes
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── ENUMS 
+
+enum UserRole {
+  FOUNDER
+  MENTOR
+  INVESTOR
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum StartupStage {
+  IDEA
+  PRE_SEED
+  SEED
+  SERIES_A
+  SERIES_B
+  GROWTH
+}
+
+enum EvaluationStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum MatchStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum SessionStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum MilestoneStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  OVERDUE
+}
+
+enum NotificationType {
+  SYSTEM
+  MATCH
+  SESSION
+  EVALUATION
+  MILESTONE
+  MESSAGE
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentProvider {
+  STRIPE
+  CHAPA
+  FREE
+}
+
+enum BoardSimulationStatus {
+  SETUP
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+// ─── USER & AUTH ───────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole  @default(FOUNDER)
+  bio           String?   @db.Text
+  phone         String?
+  linkedin      String?
+  website       String?
+  location      String?
+  skills        String[]
+  interests     String[]
+  isActive      Boolean   @default(true)
+  isVerified    Boolean   @default(false)
+  onboarded     Boolean   @default(false)
+  referralCode  String?   @unique
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Auth relations
+  accounts Account[]
+  sessions Session[]
+
+  // Platform relations
+  startups        Startup[]
+  mentorProfile   MentorProfile?
+  investorProfile InvestorProfile?
+  sentMessages    Message[]       @relation("SentMessages")
+  receivedMessages Message[]      @relation("ReceivedMessages")
+  notifications   Notification[]
+  auditLogs       AuditLog[]
+  chatMessages    ChatMessage[]
+  riskScore       FounderRiskScore?
+  forumPosts      ForumPost[]
+  forumReplies    ForumReply[]
+  forumVotes      ForumVote[]
+  referralsMade   Referral[]     @relation("ReferralsMade")
+  referralUsed    Referral?      @relation("ReferralUsed")
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ─── STARTUP & IDEAS ──────────────────────────────────────────
+
+model Startup {
+  id              String       @id @default(cuid())
+  name            String
+  tagline         String?
+  description     String       @db.Text
+  problem         String       @db.Text
+  solution        String       @db.Text
+  targetMarket    String       @db.Text
+  businessModel   String       @db.Text
+  stage           StartupStage @default(IDEA)
+  industry        String
+  techStack       String[]
+  teamSize        Int          @default(1)
+  revenue         Float?
+  fundingRaised   Float?
+  fundingSeeking  Float?
+  pitchDeckUrl    String?
+  logoUrl         String?
+  websiteUrl      String?
+  isPublic        Boolean      @default(true)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  // Relations
+  founderId   String
+  founder     User              @relation(fields: [founderId], references: [id], onDelete: Cascade)
+  cohortId    String?
+  cohort      Cohort?           @relation(fields: [cohortId], references: [id])
+  evaluations IdeaEvaluation[]
+  milestones  Milestone[]
+  matches     Match[]
+  watchlists       WatchlistItem[]
+  boardSimulations BoardSimulation[]
+  ddReports        DueDiligenceReport[]
+
+  @@index([founderId])
+  @@index([stage])
+  @@index([industry])
+  @@index([createdAt])
+  @@map("startups")
+}
+
+model IdeaEvaluation {
+  id                String           @id @default(cuid())
+  status            EvaluationStatus @default(PENDING)
+  nexusScore        Float?
+  marketScore       Float?
+  uniquenessScore   Float?
+  executionScore    Float?
+  viabilityScore    Float?
+  teamFitScore      Float?
+  swotAnalysis      Json?
+  competitorAnalysis Json?
+  tamSamSom         Json?
+  recommendations   Json?
+  riskAssessment    Json?
+  fullReport        Json?
+  aiModel           String?
+  processingTime    Float?
+  confidence        Float?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  startupId String
+  startup   Startup @relation(fields: [startupId], references: [id], onDelete: Cascade)
+
+  @@index([startupId])
+  @@index([status])
+  @@map("idea_evaluations")
+}
+
+// ─── MENTOR ───────────────────────────────────────────────────
+
+model MentorProfile {
+  id              String   @id @default(cuid())
+  headline        String?
+  expertise       String[]
+  industries      String[]
+  yearsExperience Int?
+  company         String?
+  title           String?
+  hourlyRate      Float?
+  currency        String   @default("USD")
+  availability    Json?
+  maxMentees      Int      @default(5)
+  currentMentees  Int      @default(0)
+  rating          Float    @default(0)
+  totalReviews    Int      @default(0)
+  totalSessions   Int      @default(0)
+  isAvailable     Boolean  @default(true)
+  isVerified      Boolean  @default(false)
+  
+  // Payments
+  stripeConnectId String?
+  chapaBankDetails Json?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  userId   String          @unique
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessions MentorSession[]
+  reviews  Review[]
+  matches  Match[]
+
+  @@index([isAvailable])
+  @@index([rating])
+  @@map("mentor_profiles")
+}
+
+model MentorSession {
+  id          String        @id @default(cuid())
+  title       String
+  description String?       @db.Text
+  scheduledAt DateTime
+  duration    Int           @default(30) // minutes
+  status      SessionStatus @default(SCHEDULED)
+  meetingUrl  String?
+  videoRoomId String?
+  notes       String?       @db.Text
+  summary     String?       @db.Text
+  aiSummary   String?       @db.Text
+  rating      Int?
+  feedback    String?       @db.Text
+  
+  // Payment info
+  amount          Float?
+  currency        String           @default("USD")
+  paymentStatus   PaymentStatus    @default(PENDING)
+  paymentProvider PaymentProvider?
+  paymentId       String?          @unique
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  mentorId String
+  mentor   MentorProfile @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+  sessionNote SessionNote?
+
+  @@index([mentorId])
+  @@index([scheduledAt])
+  @@index([status])
+  @@map("mentor_sessions")
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  mentorId String
+  mentor   MentorProfile @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+
+  @@index([mentorId])
+  @@map("reviews")
+}
+
+// ─── INVESTOR ─────────────────────────────────────────────────
+
+model InvestorProfile {
+  id                 String   @id @default(cuid())
+  firm               String?
+  title              String?
+  investmentThesis   String?  @db.Text
+  checkSizeMin       Float?
+  checkSizeMax       Float?
+  preferredStages    StartupStage[]
+  preferredIndustries String[]
+  portfolio          Json?
+  totalInvestments   Int      @default(0)
+  isAccredited       Boolean  @default(false)
+  isVerified         Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  userId     String         @unique
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  watchlists WatchlistItem[]
+  ddReports  DueDiligenceReport[]
+
+  @@map("investor_profiles")
+}
+
+model WatchlistItem {
+  id        String   @id @default(cuid())
+  notes     String?  @db.Text
+  createdAt DateTime @default(now())
+
+  investorId String
+  investor   InvestorProfile @relation(fields: [investorId], references: [id], onDelete: Cascade)
+  startupId  String
+  startup    Startup         @relation(fields: [startupId], references: [id], onDelete: Cascade)
+
+  @@unique([investorId, startupId])
+  @@map("watchlist_items")
+}
+
+// ─── MATCHMAKING ──────────────────────────────────────────────
+
+model Match {
+  id               String      @id @default(cuid())
+  type             String      // "mentor-founder" | "investor-startup" | "cofounder"
+  compatibilityScore Float?
+  aiExplanation    String?     @db.Text
+  status           MatchStatus @default(PENDING)
+  respondedAt      DateTime?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  startupId String?
+  startup   Startup?       @relation(fields: [startupId], references: [id])
+  mentorId  String?
+  mentor    MentorProfile? @relation(fields: [mentorId], references: [id])
+
+  @@index([status])
+  @@index([type])
+  @@map("matches")
+}
+
+// ─── COHORT & MILESTONES ──────────────────────────────────────
+
+model Cohort {
+  id          String    @id @default(cuid())
+  name        String
+  description String?   @db.Text
+  startDate   DateTime
+  endDate     DateTime?
+  isActive    Boolean   @default(true)
+  maxStartups Int       @default(20)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  startups Startup[]
+
+  @@map("cohorts")
+}
+
+model Milestone {
+  id          String          @id @default(cuid())
+  title       String
+  description String?         @db.Text
+  dueDate     DateTime?
+  status      MilestoneStatus @default(NOT_STARTED)
+  progress    Int             @default(0)
+  completedAt DateTime?
+  aiInsights  String?         @db.Text
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  startupId String
+  startup   Startup @relation(fields: [startupId], references: [id], onDelete: Cascade)
+
+  @@index([startupId])
+  @@index([status])
+  @@map("milestones")
+}
+
+// ─── COMMUNICATION ────────────────────────────────────────────
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  isRead    Boolean  @default(false)
+  attachments Json?
+  createdAt DateTime @default(now())
+
+  senderId   String
+  sender     User   @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User   @relation("ReceivedMessages", fields: [receiverId], references: [id])
+
+  @@index([senderId])
+  @@index([receiverId])
+  @@map("messages")
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  role      String   // "user" | "assistant"
+  content   String   @db.Text
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("chat_messages")
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  title     String
+  message   String           @db.Text
+  isRead    Boolean          @default(false)
+  actionUrl String?
+  metadata  Json?
+  createdAt DateTime         @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+  @@map("notifications")
+}
+
+// ─── AUDIT & SYSTEM ───────────────────────────────────────────
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String
+  entityId  String?
+  details   Json?
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+// ─── BOARD SIMULATION ─────────────────────────────────────────
+
+model BoardSimulation {
+  id        String                @id @default(cuid())
+  status    BoardSimulationStatus @default(SETUP)
+  feedback  String?               @db.Text
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
+
+  startupId String
+  startup   Startup @relation(fields: [startupId], references: [id], onDelete: Cascade)
+
+  messages BoardMessage[]
+
+  @@index([startupId])
+  @@index([status])
+  @@map("board_simulations")
+}
+
+model BoardMessage {
+  id             String   @id @default(cuid())
+  role           String   // "user" | "assistant" | "system"
+  persona        String?  // e.g., "Skeptic Investor", "Growth Lead"
+  content        String   @db.Text
+  createdAt      DateTime @default(now())
+
+  simulationId   String
+  simulation     BoardSimulation @relation(fields: [simulationId], references: [id], onDelete: Cascade)
+
+  @@index([simulationId])
+  @@index([createdAt])
+  @@map("board_messages")
+}
+
+// ─── AI SESSION NOTES ─────────────────────────────────────────
+
+model SessionNote {
+  id          String   @id @default(cuid())
+  summary     String   @db.Text
+  actionItems Json     // Array of action item strings
+  keyTopics   Json     // Array of key topic strings
+  aiModel     String?
+  generatedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  sessionId String        @unique
+  session   MentorSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@map("session_notes")
+}
+
+// ─── DUE DILIGENCE REPORTS ────────────────────────────────────
+
+model DueDiligenceReport {
+  id                String   @id @default(cuid())
+  overallScore      Float
+  riskLevel         String   // LOW, MEDIUM, HIGH, CRITICAL
+  strengths         Json     // Array of strength descriptions
+  risks             Json     // Array of risk descriptions
+  financialAnalysis Json?    // Structured financial assessment
+  teamAssessment    Json?    // Team evaluation
+  marketAnalysis    Json?    // Market opportunity analysis
+  recommendation    String   @db.Text
+  aiModel           String?
+  generatedAt       DateTime @default(now())
+  createdAt         DateTime @default(now())
+
+  startupId  String
+  startup    Startup         @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  investorId String
+  investor   InvestorProfile @relation(fields: [investorId], references: [id], onDelete: Cascade)
+
+  @@index([startupId])
+  @@index([investorId])
+  @@map("due_diligence_reports")
+}
+
+// ─── FOUNDER RISK SCORING ─────────────────────────────────────
+
+model FounderRiskScore {
+  id               String    @id @default(cuid())
+  riskScore        Float     // 0-100
+  riskLevel        RiskLevel @default(LOW)
+  factors          Json      // Breakdown of each risk factor
+  lastCalculatedAt DateTime  @default(now())
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([riskLevel])
+  @@map("founder_risk_scores")
+}
+
+// ─── COMMUNITY FORUMS ─────────────────────────────────────────
+
+model ForumCategory {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  slug        String   @unique
+  icon        String?  // Lucide icon name
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  posts ForumPost[]
+
+  @@map("forum_categories")
+}
+
+model ForumPost {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.Text
+  isPinned  Boolean  @default(false)
+  isLocked  Boolean  @default(false)
+  upvotes   Int      @default(0)
+  viewCount Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String
+  category   ForumCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  authorId   String
+  author     User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  replies    ForumReply[]
+  votes      ForumVote[]   @relation("PostVotes")
+
+  @@index([categoryId])
+  @@index([authorId])
+  @@index([createdAt])
+  @@map("forum_posts")
+}
+
+model ForumReply {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  upvotes   Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  postId   String
+  post     ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorId String
+  author   User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  votes    ForumVote[] @relation("ReplyVotes")
+
+  @@index([postId])
+  @@index([authorId])
+  @@map("forum_replies")
+}
+
+model ForumVote {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  userId  String
+  user    User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId  String?
+  post    ForumPost? @relation("PostVotes", fields: [postId], references: [id], onDelete: Cascade)
+  replyId String?
+  reply   ForumReply? @relation("ReplyVotes", fields: [replyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@unique([userId, replyId])
+  @@map("forum_votes")
+}
+
+// ─── REFERRAL PROGRAM ─────────────────────────────────────────
+
+model Referral {
+  id            String    @id @default(cuid())
+  code          String    @unique
+  status        String    @default("PENDING") // PENDING, COMPLETED
+  rewardGranted Boolean   @default(false)
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+
+  referrerId String
+  referrer   User    @relation("ReferralsMade", fields: [referrerId], references: [id], onDelete: Cascade)
+  referredId String? @unique
+  referred   User?   @relation("ReferralUsed", fields: [referredId], references: [id])
+
+  @@index([referrerId])
+  @@index([code])
+  @@map("referrals")
+}
