@@ -1,0 +1,24 @@
+{
+  "Navigation": {
+    "dashboard": "Tableau de Bord",
+    "ideas": "Mes Idées",
+    "submitIdea": "Soumettre une Idée",
+    "aiMentor": "Mentor IA",
+    "boardSimulation": "Simulation de CA",
+    "pitchDeck": "Pitch Deck",
+    "mentors": "Mentors",
+    "calendar": "Calendrier",
+    "sessions": "Sessions",
+    "messages": "Messages",
+    "community": "Communauté",
+    "notifications": "Notifications",
+    "matches": "Correspondances",
+    "referrals": "Parrainages",
+    "milestones": "Jalons",
+    "dealFlow": "Flux de Transactions",
+    "adminPanel": "Panneau d'Administration",
+    "lightMode": "Mode Clair",
+    "darkMode": "Mode Sombre",
+    "signOut": "Se Déconnecter"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "Navigation": {
+    "dashboard": "ዳሽቦርድ",
+    "ideas": "ሓሳባተይ",
+    "submitIdea": "ሓሳብ ኣእቱ",
+    "aiMentor": "ናይ ኣይኣይ ኣማኻሪ",
+    "boardSimulation": "ናይ ቦርድ ምምሳል",
+    "pitchDeck": "ናይ ምቕራብ ሰነድ",
+    "mentors": "ኣማኸርቲ",
+    "calendar": "ዓውደ ኣዋርሕ",
+    "sessions": "ክፍለ-ግዜታት",
+    "messages": "መልእኽትታት",
+    "community": "ማሕበረሰብ",
+    "notifications": "መፍለጢታት",
+    "matches": "ምትእስሳራት",
+    "referrals": "መተሓላለፊታት",
+    "milestones": "ምዕራፋት",
+    "dealFlow": "ዋሕዚ ስምምዕ",
+    "adminPanel": "ናይ ምምሕዳር ፓነል",
+    "lightMode": "ናይ መዓልቲ ሞድ",
+    "darkMode": "ናይ ለይቲ ሞድ",
+    "signOut": "ውጻእ"
+  }
+}

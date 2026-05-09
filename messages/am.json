@@ -1,0 +1,24 @@
+{
+  "Navigation": {
+    "dashboard": "ዳሽቦርድ",
+    "ideas": "የእኔ ሀሳቦች",
+    "submitIdea": "ሀሳብ አስገባ",
+    "aiMentor": "የአይአይ አማካሪ",
+    "boardSimulation": "የቦርድ ማስመሰል",
+    "pitchDeck": "የማቅረቢያ ሰነድ",
+    "mentors": "አማካሪዎች",
+    "calendar": "የቀን መቁጠሪያ",
+    "sessions": "ክፍለ-ጊዜዎች",
+    "messages": "መልዕክቶች",
+    "community": "ማህበረሰብ",
+    "notifications": "ማሳወቂያዎች",
+    "matches": "ግጥምጥሞች",
+    "referrals": "ሪፈራሎች",
+    "milestones": "ምዕራፎች",
+    "dealFlow": "የስምምነት ፍሰት",
+    "adminPanel": "የአስተዳዳሪ ፓነል",
+    "lightMode": "የቀን ሞድ",
+    "darkMode": "የማታ ሞድ",
+    "signOut": "ውጣ"
+  }
+}
