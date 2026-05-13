@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
 
     if (genAI) {
       try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
         // Get recent context
         const history = await prisma.chatMessage.findMany({
