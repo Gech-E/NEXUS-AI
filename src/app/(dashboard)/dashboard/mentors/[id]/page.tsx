@@ -117,7 +117,7 @@ export default function MentorProfilePage() {
                   <Star className="w-4 h-4 fill-amber-500" />
                   {mentor.rating.toFixed(1)} ({mentor.totalReviews} reviews)
                 </div>
-                <Button size="lg" className="w-full md:w-auto" onClick={() => setBookingOpen(true)}>
+                <Button className="w-full md:w-auto px-6 py-3 text-lg" onClick={() => setBookingOpen(true)}>
                   Request Session
                 </Button>
               </div>
