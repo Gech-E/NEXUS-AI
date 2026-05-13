@@ -299,12 +299,12 @@ export default function CommunityPage() {
                 <select
                   value={newPost.categoryId}
                   onChange={e => setNewPost(p => ({ ...p, categoryId: e.target.value }))}
-                  className="w-full px-3 py-2.5 rounded-xl border bg-transparent text-sm"
-                  style={{ borderColor: "var(--border-primary)", color: "var(--text-primary)" }}
+                  className="w-full px-3 py-2.5 rounded-xl border text-sm focus:outline-none focus:border-[var(--color-brand-500)]"
+                  style={{ backgroundColor: "var(--bg-secondary)", borderColor: "var(--border-primary)", color: "var(--text-primary)" }}
                 >
-                  <option value="">Select a category...</option>
+                  <option value="" style={{ backgroundColor: "var(--bg-secondary)", color: "var(--text-primary)" }}>Select a category...</option>
                   {categories.map(c => (
-                    <option key={c.id} value={c.id}>{c.name}</option>
+                    <option key={c.id} value={c.id} style={{ backgroundColor: "var(--bg-secondary)", color: "var(--text-primary)" }}>{c.name}</option>
                   ))}
                 </select>
               </div>

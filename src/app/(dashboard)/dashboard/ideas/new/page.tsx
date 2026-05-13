@@ -117,7 +117,7 @@ export default function SubmitIdeaPage() {
           <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white/5 -z-10 -translate-y-1/2" />
           <div 
             className="absolute top-1/2 left-0 h-[2px] bg-gradient-to-r from-indigo-500 to-purple-500 -z-10 -translate-y-1/2 transition-all duration-500 ease-out" 
-            style={{ width: \`${((step - 1) / (STEPS.length - 1)) * 100}%\` }}
+            style={{ width: `${((step - 1) / (STEPS.length - 1)) * 100}%` }}
           />
           
           {STEPS.map((s, idx) => {
