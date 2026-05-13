@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Users, Star, Briefcase, MapPin, Search, Filter, Loader2 } from "lucide-react";
+import Link from "next/link";
 import { Card } from "@/components/ui/Card/Card";
 import { Button } from "@/components/ui/Button/Button";
 import { Input } from "@/components/ui/Input/Input";
+import { BookingModal } from "@/components/BookingModal";
 
 interface Mentor {
   id: string;
@@ -28,6 +30,7 @@ export default function MentorsPage() {
   const [mentors, setMentors] = useState<Mentor[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [bookingMentor, setBookingMentor] = useState<{ id: string; name: string } | null>(null);
 
   useEffect(() => {
     fetchMentors();
@@ -120,12 +123,35 @@ export default function MentorsPage() {
                 ))}
               </div>
               <div className="mt-4 flex gap-2">
-                <Button className="flex-1 text-sm py-2">Request Session</Button>
-                <Button variant="secondary" className="text-sm py-2 px-4">View Profile</Button>
+                <Button 
+                  className="flex-1 text-sm py-2"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setBookingMentor({ id: mentor.id, name: mentor.name });
+                  }}
+                >
+                  Request Session
+                </Button>
+                <Link href={`/dashboard/mentors/${mentor.id}`} onClick={(e) => e.stopPropagation()}>
+                  <Button variant="secondary" className="text-sm py-2 px-4">View Profile</Button>
+                </Link>
               </div>
             </Card>
           ))}
         </div>
+      )}
+
+      {bookingMentor && (
+        <BookingModal
+          mentorId={bookingMentor.id}
+          mentorName={bookingMentor.name}
+          onClose={() => setBookingMentor(null)}
+          onSuccess={() => {
+            setBookingMentor(null);
+            // Optionally, you can show a success toast or redirect to sessions page here.
+            window.location.href = "/dashboard/sessions";
+          }}
+        />
       )}
     </div>
   );
